@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f4ec"><meta name="description" content="오늘 점심 고민은 여기까지. 취향에 맞는 메뉴를 넣고 룰렛을 돌려보세요.">
+  <title>돌려돌려 점심판 · 오늘 뭐 먹지?</title>
+  <link rel="stylesheet" href="style.css"><script src="app.js" defer></script>
+</head>
+<body>
+  <header><a href="./" class="brand">✳ <span>돌려돌려 <b>점심판</b></span></a><span class="header-note">매일 하는 고민, 가볍게 돌려요.</span><span class="badge">LUNCH CLUB</span></header>
+  <main>
+    <section class="intro"><div class="eyebrow">THE DAILY LUNCH DILEMMA</div><h1>오늘 점심,<br><span>운명에 맡겨봐!</span><i>✷</i></h1><p>고민은 짧게, 점심은 맛있게.<br>먹고 싶은 메뉴를 담고 돌리면 오늘의 점심 끝.</p></section>
+    <section class="playground" aria-label="점심 메뉴 룰렛">
+      <div class="wheel-panel"><div class="panel-top"><span>오늘의 점심 뽑기</span><span class="live-dot">READY TO EAT</span></div><div class="wheel-stage"><div class="pointer" aria-hidden="true"></div><canvas id="wheel" width="700" height="700" role="img" aria-label="점심 메뉴 룰렛"></canvas><span class="wheel-center" aria-hidden="true">냠!</span></div><button id="spin" class="spin">돌려돌려! <span>↗</span></button><p id="wheel-note" class="note">버튼을 누르면 맛있는 운명이 시작돼요.</p><div id="result" class="result" role="status" aria-live="polite"></div></div>
+      <aside class="menu-panel"><div class="section-heading"><div><span class="eyebrow">YOUR LUNCH LINEUP</span><h2>오늘의 후보 <span id="count"></span></h2></div><button id="reset" class="text-button">초기화 ↺</button></div><p class="muted">오늘 안 끌리는 메뉴는 눌러서 빼주세요.</p><div id="menus" class="menus"></div><form id="add-form"><label for="menu-input">나만의 메뉴 추가</label><div class="input-row"><input id="menu-input" maxlength="18" placeholder="예: 회사 앞 쌀국수" autocomplete="off" required><button aria-label="메뉴 추가">+</button></div><p id="input-message" role="status" class="note"></p></form><label class="toggle-row"><span><b>방금 먹은 메뉴는 쉬어가기</b><small>가장 최근에 뽑힌 메뉴를 제외해요</small></span><input id="exclude-last" type="checkbox"></label><div class="little-tip"><span>✦</span><p>뭐가 나와도 맛있을 거예요.<br>오늘은 새로운 메뉴에 도전해봐요!</p></div></aside>
+    </section>
+    <section class="history-section"><div class="history-heading"><h2>우리의 점심 발자국 <span>RECENT PICKS</span></h2><button id="clear-history" class="text-button">기록 비우기</button></div><div id="history" class="history"></div></section>
+  </main><footer><span>✳ dolryeo-lunch</span><span>잘 먹는 것도, 잘 사는 것.</span></footer>
+</body>
+</html>
