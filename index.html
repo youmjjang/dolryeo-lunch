@@ -16,7 +16,7 @@
     </section>
 
     <section class="restaurant-section" id="restaurants" aria-label="실제 주변 식당 추천">
-      <div class="history-heading"><div><span class="eyebrow">REAL PLACES, REAL LUNCH</span><h2>진짜 식당 찾아보기 🍽️</h2></div></div>
+      <div class="history-heading"><div><span class="eyebrow">REAL PLACES, REAL LUNCH</span><h2>오늘의 주변 식당 🍽️</h2></div></div>
       <p class="muted">룰렛에서 뽑힌 메뉴로 주변 실제 식당을 찾아요. 위치 정보는 검색에만 사용하고 저장하지 않아요.</p>
       <div class="place-controls">
         <button type="button" id="locate-me" class="place-btn">📍 내 위치로 찾기</button>
@@ -25,7 +25,6 @@
       <div class="place-controls"><label for="place-radius">검색 반경</label><select id="place-radius"><option value="500">500m</option><option value="1000" selected>1km</option><option value="2000">2km</option><option value="3000">3km</option></select><span id="place-location-label" class="muted">먼저 위치를 정해주세요.</span></div>
       <p id="place-status" role="status" aria-live="polite" class="note">룰렛을 돌리고 위치를 정하면 식당을 찾을 수 있어요.</p>
       <div id="place-results" class="place-results"></div>
-      <div class="place-links"><a id="kakao-find" href="https://map.kakao.com/" target="_blank" rel="noopener noreferrer">카카오맵에서 식당 더 찾기 ↗</a><a id="naver-find" href="https://map.naver.com/" target="_blank" rel="noopener noreferrer">네이버지도에서 찾기 ↗</a></div>
       <p class="place-credit">식당 데이터: © OpenStreetMap contributors · OpenStreetMap의 등록 정보에 따라 결과가 없거나 최신 영업 정보와 다를 수 있어요.</p>
     </section>
     <section class="history-section"><div class="history-heading"><h2>우리의 점심 발자국 <span>RECENT PICKS</span></h2><button id="clear-history" class="text-button">기록 비우기</button></div><div id="history" class="history"></div></section>
