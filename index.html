@@ -14,6 +14,20 @@
       <div class="wheel-panel"><div class="panel-top"><span>오늘의 점심 뽑기</span><span class="live-dot">READY TO EAT</span></div><div class="wheel-stage"><div class="pointer" aria-hidden="true"></div><canvas id="wheel" width="700" height="700" role="img" aria-label="점심 메뉴 룰렛"></canvas><span class="wheel-center" aria-hidden="true">냠!</span></div><button id="spin" class="spin">돌려돌려! <span>↗</span></button><p id="wheel-note" class="note">버튼을 누르면 맛있는 운명이 시작돼요.</p><div id="result" class="result" role="status" aria-live="polite"></div></div>
       <aside class="menu-panel"><div class="section-heading"><div><span class="eyebrow">YOUR LUNCH LINEUP</span><h2>오늘의 후보 <span id="count"></span></h2></div><button id="reset" class="text-button">초기화 ↺</button></div><p class="muted">오늘 안 끌리는 메뉴는 눌러서 빼주세요.</p><div id="menus" class="menus"></div><form id="add-form"><label for="menu-input">나만의 메뉴 추가</label><div class="input-row"><input id="menu-input" maxlength="18" placeholder="예: 회사 앞 쌀국수" autocomplete="off" required><button aria-label="메뉴 추가">+</button></div><p id="input-message" role="status" class="note"></p></form><label class="toggle-row"><span><b>방금 먹은 메뉴는 쉬어가기</b><small>가장 최근에 뽑힌 메뉴를 제외해요</small></span><input id="exclude-last" type="checkbox"></label><div class="little-tip"><span>✦</span><p>뭐가 나와도 맛있을 거예요.<br>오늘은 새로운 메뉴에 도전해봐요!</p></div></aside>
     </section>
+
+    <section class="restaurant-section" id="restaurants" aria-label="실제 주변 식당 추천">
+      <div class="history-heading"><div><span class="eyebrow">REAL PLACES, REAL LUNCH</span><h2>진짜 식당 찾아보기 🍽️</h2></div></div>
+      <p class="muted">룰렛에서 뽑힌 메뉴로 주변 실제 식당을 찾아요. 위치 정보는 검색에만 사용하고 저장하지 않아요.</p>
+      <div class="place-controls">
+        <button type="button" id="locate-me" class="place-btn">📍 내 위치로 찾기</button>
+        <form id="location-form" class="place-form"><label class="sr-only" for="location-input">지역 또는 주소</label><input id="location-input" placeholder="동네·역명·주소 입력 (예: 대전 둔산동)" maxlength="80" required><button type="submit" class="place-btn">지역 검색</button></form>
+      </div>
+      <div class="place-controls"><label for="place-radius">검색 반경</label><select id="place-radius"><option value="500">500m</option><option value="1000" selected>1km</option><option value="2000">2km</option><option value="3000">3km</option></select><span id="place-location-label" class="muted">먼저 위치를 정해주세요.</span></div>
+      <p id="place-status" role="status" aria-live="polite" class="note">룰렛을 돌리고 위치를 정하면 식당을 찾을 수 있어요.</p>
+      <div id="place-results" class="place-results"></div>
+      <div class="place-links"><a id="kakao-find" href="https://map.kakao.com/" target="_blank" rel="noopener noreferrer">카카오맵에서 식당 더 찾기 ↗</a><a id="naver-find" href="https://map.naver.com/" target="_blank" rel="noopener noreferrer">네이버지도에서 찾기 ↗</a></div>
+      <p class="place-credit">식당 데이터: © OpenStreetMap contributors · OpenStreetMap의 등록 정보에 따라 결과가 없거나 최신 영업 정보와 다를 수 있어요.</p>
+    </section>
     <section class="history-section"><div class="history-heading"><h2>우리의 점심 발자국 <span>RECENT PICKS</span></h2><button id="clear-history" class="text-button">기록 비우기</button></div><div id="history" class="history"></div></section>
   </main><footer><span>✳ dolryeo-lunch</span><span>잘 먹는 것도, 잘 사는 것.</span></footer>
 </body>
