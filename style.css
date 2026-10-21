@@ -14,8 +14,6 @@
 .place-card{padding:18px;border:1px solid #dfe5d8;border-radius:18px;background:#f7f8f0}
 .place-card h3{margin:0 0 10px;font-size:18px;color:#234636}
 .place-card p{margin:5px 0;color:#536257;font-size:14px;overflow-wrap:anywhere}
-.place-card a,.place-links a{display:inline-block;margin:10px 12px 0 0;color:#215f45;font-weight:700;text-decoration:underline;text-underline-offset:3px}
-.place-links{margin-top:14px}
 .place-credit{margin-top:18px;color:#6b746b;font-size:12px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media(max-width:600px){.restaurant-section{padding:18px}.place-form{width:100%}.place-form input{min-width:0}.place-controls{align-items:stretch}}
