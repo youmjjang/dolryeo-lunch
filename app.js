@@ -89,20 +89,12 @@ function placeTerms(menu){return [...new Set([menu,...(foodWords[menu]||[])].map
 function osmLocation(item){return item.center||item;}
 function placeDistance(lat1,lon1,lat2,lon2){const r=Math.PI/180,a=Math.sin((lat2-lat1)*r/2)**2+Math.cos(lat1*r)*Math.cos(lat2*r)*Math.sin((lon2-lon1)*r/2)**2;return Math.round(12742000*Math.asin(Math.sqrt(a)));}
 function setPlaceStatus(msg){placeEls.status.textContent=msg;}
-function linkOut(anchor,base,query){anchor.href=base+encodeURIComponent(query);}
-function updatePlaceLinks(){
- const q=[placeLocation?.label||'',placeMenu||'점심 식당'].filter(Boolean).join(' ');
- linkOut($('kakao-find'),'https://map.kakao.com/?q=',q);
- linkOut($('naver-find'),'https://map.naver.com/p/search/',q);
-}
 function placeCard(element,distance){
  const t=element.tags||{},p=osmLocation(element),name=t['name:ko']||t.name||'이름 미등록 식당';
  const card=document.createElement('article');card.className='place-card';
  const h=document.createElement('h3');h.textContent=name;card.append(h);
  const info=document.createElement('p');info.textContent=[distance+'m',t.cuisine?.replaceAll(';',', '),t['addr:street']||t['addr:full']||''].filter(Boolean).join(' · ');card.append(info);
  if(t.opening_hours){const hours=document.createElement('p');hours.textContent='등록 영업시간: '+t.opening_hours;card.append(hours);}
- const map=document.createElement('a');map.target='_blank';map.rel='noopener noreferrer';map.href='https://www.openstreetmap.org/?mlat='+p.lat+'&mlon='+p.lon+'#map=18/'+p.lat+'/'+p.lon;map.textContent='지도 보기 ↗';card.append(map);
- const kakao=document.createElement('a');kakao.target='_blank';kakao.rel='noopener noreferrer';linkOut(kakao,'https://map.kakao.com/?q=',name+' '+(placeLocation?.label||''));kakao.textContent='카카오맵 확인 ↗';card.append(kakao);
  return card;
 }
 async function lookupPlaces(){
@@ -125,13 +117,13 @@ async function lookupPlaces(){
    const distance=placeDistance(lat,lon,osmLocation(e).lat,osmLocation(e).lon);
    return {e,distance,rank:exact?2:matched?1:0};
   }).filter(x=>x.rank>0).sort((a,b)=>b.rank-a.rank||a.distance-b.distance);
-  if(!ranked.length){setPlaceStatus('이 지역에서 "'+placeMenu+'" 관련 식당을 찾지 못했어요. 지도 검색 버튼으로 더 찾아보세요.');return;}
+  if(!ranked.length){setPlaceStatus('이 지역에서 "'+placeMenu+'" 관련 식당을 찾지 못했어요. 다른 지역이나 검색 반경을 선택해 주세요.');return;}
   ranked.slice(0,12).forEach(({e,distance})=>placeEls.results.append(placeCard(e,distance)));
   setPlaceStatus('"'+placeMenu+'" 관련 식당 '+ranked.length+'곳을 찾았어요. 상위 12곳을 보여줘요. (실시간 영업 여부는 확인되지 않음)');
- }catch(err){if(current!==placeRequest)return;setPlaceStatus('무료 식당 검색 서버에 연결하지 못했어요. 아래 카카오맵·네이버지도 검색 링크를 이용해 주세요.');}
+ }catch(err){if(current!==placeRequest)return;setPlaceStatus('무료 식당 검색 서버에 연결하지 못했어요. 잠시 후 다시 시도해 주세요.');}
  finally{clearTimeout(timeout);}
 }
-function setChosenPlace(label,lat,lon){placeLocation={label,lat,lon};placeEls.label.textContent='기준 위치: '+label;updatePlaceLinks();if(placeMenu)lookupPlaces();else setPlaceStatus('위치가 설정됐어요. 룰렛을 돌려 메뉴를 뽑아보세요.');}
+function setChosenPlace(label,lat,lon){placeLocation={label,lat,lon};placeEls.label.textContent='기준 위치: '+label;if(placeMenu)lookupPlaces();else setPlaceStatus('위치가 설정됐어요. 룰렛을 돌려 메뉴를 뽑아보세요.');}
 $('locate-me').addEventListener('click',()=>{
  if(!navigator.geolocation){setPlaceStatus('이 브라우저에서는 위치 확인을 지원하지 않아요. 지역을 직접 입력해 주세요.');return;}
  const btn=$('locate-me');btn.disabled=true;setPlaceStatus('위치 사용 권한을 확인하고 있어요…');
@@ -149,5 +141,5 @@ $('location-form').addEventListener('submit',async ev=>{
  finally{button.disabled=false;}
 });
 $('place-radius').addEventListener('change',lookupPlaces);
-function afterLunchSpin(menu){placeMenu=menu;updatePlaceLinks();if(placeLocation)lookupPlaces();else setPlaceStatus('"'+menu+'" 당첨! 내 위치 또는 지역을 설정하면 실제 식당을 찾아드려요.');}
-updatePlaceLinks();
+function afterLunchSpin(menu){placeMenu=menu;if(placeLocation)lookupPlaces();else setPlaceStatus('"'+menu+'" 당첨! 내 위치 또는 지역을 설정하면 실제 식당을 찾아드려요.');}
+
